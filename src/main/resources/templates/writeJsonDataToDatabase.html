@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Write Json Data To Database</title>
+    <link rel="stylesheet" type="text/css" th:href="style.css">
+    <th:block th:include="menu/menu"/>
+</head>
+<body th:background="pictureForSecondPage.jpg" class="background">
+<fieldset>
+    <legend class="center"><h1>Insert link, header and press Submit</h1></legend>
+    <form action="/writeJsonDataToDatabase" class="center"><br/>
+        <label>
+            <input type="text" name="url" title="insert url" required="required" placeholder="insert url" style="font-size: xx-large"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="text" name="dataHeader" title="insert dataHeader" required="required" placeholder="insert dataHeader" style="font-size: xx-large"/>
+        </label><br/><br/>
+        <input type="submit" value="Submit" style="font-size: x-large"/>
+    </form>
+</fieldset>
+    <br/><br/><br/><br/><br/>
+    <div th:if="${message}" th:utext="${message}" class="utext"></div>
+    <div th:if="${errorMessage}" th:utext="${errorMessage}" class="utextError"></div>
+</body>
+</html>

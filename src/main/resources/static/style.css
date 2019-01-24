@@ -1,0 +1,22 @@
+.background {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+.utext {
+    text-align: center;
+    color: darkgreen;
+    font-size: large;.
+}
+.utextError {
+    text-align: center;
+    color: red;
+    font-size: large;
+}
+.center{
+    text-align: center;
+}
