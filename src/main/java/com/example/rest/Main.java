@@ -2,8 +2,6 @@ package com.example.rest;
 
 import com.example.rest.service.DoWork;
 import com.example.rest.service.ReadFromFileLinks;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class Main{
