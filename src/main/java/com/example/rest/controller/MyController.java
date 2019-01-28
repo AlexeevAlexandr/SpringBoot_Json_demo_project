@@ -17,11 +17,13 @@ public class MyController {
     private DoWork doWork = new DoWork();
     private DataBaseCommands commands = new Commands();
 
+    //home page
     @GetMapping({"/", "/home"})
     public String startPage() {
         return "home";
     }
 
+    //On this page you can paste the URL of the page where the JSON data and header of data, which you will need to download
     @RequestMapping("/writeJsonDataToDatabase")
     public String writeJsonDataToDatabase(Model model, HttpServletRequest request) {
         String info;
@@ -47,6 +49,7 @@ public class MyController {
         return "writeJsonDataToDatabase";
     }
 
+    //On this page you can view all downloaded JSON data from database.
     @RequestMapping(value = "/showDataFromDatabase")
     public String showDataFromDatabase(Model model) {
         try {
@@ -62,6 +65,7 @@ public class MyController {
         return "showDataFromDatabase";
     }
 
+    //On this page you can search for JSON data by hash
     @GetMapping(value = "/showDataByHash")
     public String showDataByHash(Model model, HttpServletRequest request) {
         String hash;

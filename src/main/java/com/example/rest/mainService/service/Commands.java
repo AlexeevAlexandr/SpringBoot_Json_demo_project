@@ -97,6 +97,7 @@ public class Commands implements DataBaseCommands, JsonCommands {
 
     @Override
     public List getDataFromDatabaseByHash(String hash) throws IOException {
+
         try (SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
              Session session = sessionFactory.openSession())
         {
