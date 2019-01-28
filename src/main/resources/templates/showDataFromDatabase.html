@@ -7,5 +7,12 @@
     <th:block th:include="menu/menu"/>
 </head>
 <body th:background="Clearing-Sky.jpg" class="background">
+    <table>
+        <th:block th:each="data : ${message}">
+            <tr>
+                <td th:text="${data}">...</td>
+            </tr>
+        </th:block>
+    </table>
 </body>
 </html>

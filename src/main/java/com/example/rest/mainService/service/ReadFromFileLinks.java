@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ReadFromFileLinks {
+
     public List<String> getLinks() throws IOException {
         List<String> linksList = new ArrayList<>();
         try (Scanner scanner = new Scanner(new FileReader("src/main/resources/listOfLinks.csv"))) {

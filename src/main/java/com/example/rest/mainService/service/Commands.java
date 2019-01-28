@@ -12,11 +12,11 @@ import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.List;
 import java.util.Scanner;
 
-public class Commands implements JsonListAddToDatabase, JsonMethods{
+public class Commands implements DataBaseCommands, JsonCommands {
 
     private Transaction transaction = null;
 
@@ -48,10 +48,10 @@ public class Commands implements JsonListAddToDatabase, JsonMethods{
     }
 
     @Override
-    public JSONArray setDataToJsonArray(StringBuilder inline, String string) throws ParseException {
+    public JSONArray setDataToJsonArray(StringBuilder inline, String dataHeader) throws ParseException {
         JSONParser parse = new JSONParser();
         JSONObject jObj = (JSONObject) parse.parse(inline.toString());
-        return (JSONArray) jObj.get(string);
+        return (JSONArray) jObj.get(dataHeader);
     }
 
     @Override
@@ -79,6 +79,30 @@ public class Commands implements JsonListAddToDatabase, JsonMethods{
             if (transaction != null) {
                 transaction.rollback();
             }
+            throw new IOException();
+        }
+    }
+
+    @Override
+    public List getDataFromDatabase() throws IOException {
+        try (SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+             Session session = sessionFactory.openSession())
+        {
+            return session.createQuery("SELECT value FROM JsonList").list();
+
+        } catch (Exception e) {
+            throw new IOException();
+        }
+    }
+
+    @Override
+    public List getDataFromDatabaseByHash(String hash) throws IOException {
+        try (SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+             Session session = sessionFactory.openSession())
+        {
+            return session.createQuery("SELECT value FROM JsonList WHERE hash = '" + hash + "'").list();
+
+        } catch (Exception e) {
             throw new IOException();
         }
     }

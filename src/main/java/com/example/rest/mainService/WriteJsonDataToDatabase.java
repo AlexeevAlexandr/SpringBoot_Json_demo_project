@@ -1,9 +1,7 @@
 package com.example.rest.mainService;
 
-import com.example.rest.mainService.service.DoWork;
 import com.example.rest.mainService.service.ReadFromFileLinks;
 
-import java.io.IOException;
 import java.util.List;
 
 /**
