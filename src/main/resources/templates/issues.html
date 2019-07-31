@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+    <title>Issue List</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+</head>
+<body>
+    <th:block th:include="header"/>
+
+    <div class="w3-container">
+        <table class="w3-table-all">
+            <thead>
+                <tr class="w3-red">
+                    <th>Url</th>
+                    <th>Description</th>
+                    <th>Done</th>
+                    <th>Name</th>
+                    <th>Create Date</th>
+                    <th>Update Date</th>
+                </tr>
+            </thead>
+            <th:block th:each="issue : ${issues}">
+                <tr>
+                    <td th:text="${issue.url}" style="word-wrap: break-word">...</td>
+                    <td>
+                        <div class="w3-dropdown-hover"> description
+                            <div class="w3-dropdown-content w3-bar-block w3-border">
+                                <div class="w3-container">
+                                    <form th:action="@{/issues}" method="post">
+                                        <div>
+                                            <label>
+                                                <textarea th:text="${issue.description}" name="data" onkeydown="myFunctionShow()" rows="10" style="word-wrap: break-word">...</textarea>
+                                                <textarea th:text="${issue.id}" name="data" style="display: none">...</textarea>
+                                            </label>
+                                            <button id="submit" type="submit" class="w3-button w3-green w3-col m6 w3-center" style="display: none">save</button>
+                                            <button id="reset" type="reset" class="w3-button w3-red w3-col m6 w3-center" style="display: none" onclick="myFunctionHide()">reset</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td th:text="${issue.done} ? YES : NO">...</td>
+                    <td th:text="${issue.name}">...</td>
+                    <td th:text="${issue.createdate}">...</td>
+                    <td th:text="${issue.updatedate}">...</td>
+                </tr>
+            </th:block>
+        </table>
+    </div>
+<script>
+    function myFunctionShow(){
+        document.getElementById("submit").style.display = "block";
+        document.getElementById("reset").style.display = "block";
+    }
+
+    function myFunctionHide(){
+        document.getElementById("submit").style.display = "none";
+        document.getElementById("reset").style.display = "none";
+    }
+</script>
+</body>
+</html>
