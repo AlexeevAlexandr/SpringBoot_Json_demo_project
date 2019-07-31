@@ -17,8 +17,8 @@
                     <th>Description</th>
                     <th>Done</th>
                     <th>Name</th>
-                    <th>Create Date</th>
-                    <th>Update Date</th>
+                    <th>Create</th>
+                    <th>Modified</th>
                 </tr>
             </thead>
             <th:block th:each="issue : ${issues}">
@@ -52,13 +52,17 @@
     </div>
 <script>
     function myFunctionShow(){
-        document.getElementById("submit").style.display = "block";
-        document.getElementById("reset").style.display = "block";
+        let on = document.getElementsByTagName("button");
+        for (let i = 0; i<on.length; i++){
+            on[i].style.display = "block";
+        }
     }
 
     function myFunctionHide(){
-        document.getElementById("submit").style.display = "none";
-        document.getElementById("reset").style.display = "none";
+        let on = document.getElementsByTagName("button");
+        for (let i = 0; i<on.length; i++){
+            on[i].style.display = "none";
+        }
     }
 </script>
 </body>

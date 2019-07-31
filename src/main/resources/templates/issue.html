@@ -8,7 +8,21 @@
 <body>
     <th:block th:include="header"/>
 
-
+    <form th:action="@{/issue}" method="post" th:object="${issue}">
+        <fieldset>
+            <legend class="w3-center w3-xxlarge w3-text-blue">Create Issue</legend>
+            <form class="w3-container">
+                <label class="w3-text-blue">URL
+                    <input class="w3-input w3-border" type="url" th:field="*{url}" required/></label>
+                <label class="w3-text-blue">Description
+                    <input class="w3-input w3-border" type="text" th:field="*{description}" required/></label>
+                <label class="w3-text-blue">Name
+                    <input class="w3-input w3-border" type="text" th:field="*{name}" required/></label>
+                <br>
+                <button type="submit" class="w3-btn w3-blue">Submit</button>
+            </form>
+        </fieldset>
+    </form>
 
 </body>
 </html>
