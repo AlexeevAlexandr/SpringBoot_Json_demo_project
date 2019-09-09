@@ -14,20 +14,20 @@ public class Issue {
     private String url;
     private String description;
     private boolean done;
-    private Date createdate;
-    private Date updatedate;
+    private Date create_date;
+    private Date update_date;
 
     public Issue() {
     }
 
-    public Issue(int id, String name, String url, String description, boolean done, Date createdate, Date updatedate) {
+    public Issue(int id, String name, String url, String description, boolean done, Date create_date, Date update_date) {
         this.id = id;
         this.name = name;
         this.url = url;
         this.description = description;
         this.done = done;
-        this.createdate = createdate;
-        this.updatedate = updatedate;
+        this.create_date = create_date;
+        this.update_date = update_date;
     }
 
     public int getId() {
@@ -70,19 +70,19 @@ public class Issue {
         this.done = done;
     }
 
-    public Date getCreatedate() {
-        return createdate;
+    public Date getCreate_date() {
+        return create_date;
     }
 
-    public void setCreatedate(Date createdate) {
-        this.createdate = createdate;
+    public void setCreate_date(Date create_date) {
+        this.create_date = create_date;
     }
 
-    public Date getUpdatedate() {
-        return updatedate;
+    public Date getUpdate_date() {
+        return update_date;
     }
 
-    public void setUpdatedate(Date updatedate) {
-        this.updatedate = updatedate;
+    public void setUpdate_date(Date update_date) {
+        this.update_date = update_date;
     }
 }

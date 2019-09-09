@@ -23,7 +23,16 @@
             </thead>
             <th:block th:each="issue : ${issues}">
                 <tr>
-                    <td th:text="${issue.url}" style="word-wrap: break-word">...</td>
+                    <td style="word-wrap: break-word">
+                        <div class="w3-dropdown-hover">
+                            <a th:href="${issue.url}" target="_blank">Link to issue</a>
+                            <div class="w3-dropdown-content w3-bar-block w3-border">
+                                <label>
+                                    <textarea th:text="${issue.url}" readonly rows="10">...</textarea>
+                                </label>
+                            </div>
+                        </div>
+                    </td>
                     <td>
                         <div class="w3-dropdown-hover"> description
                             <div class="w3-dropdown-content w3-bar-block w3-border">
@@ -44,23 +53,23 @@
                     </td>
                     <td th:text="${issue.done} ? YES : NO">...</td>
                     <td th:text="${issue.name}">...</td>
-                    <td th:text="${issue.createdate}">...</td>
-                    <td th:text="${issue.updatedate}">...</td>
+                    <td th:text="${issue.create_date}">...</td>
+                    <td th:text="${issue.update_date}">...</td>
                 </tr>
             </th:block>
         </table>
     </div>
 <script>
     function myFunctionShow(){
-        let on = document.getElementsByTagName("button");
-        for (let i = 0; i<on.length; i++){
+        var on = document.getElementsByTagName("button");
+        for (var i = 0; i<on.length; i++){
             on[i].style.display = "block";
         }
     }
 
     function myFunctionHide(){
-        let on = document.getElementsByTagName("button");
-        for (let i = 0; i<on.length; i++){
+        var on = document.getElementsByTagName("button");
+        for (var i = 0; i<on.length; i++){
             on[i].style.display = "none";
         }
     }

@@ -1,7 +1,7 @@
 package com.example.controller;
 
 import com.example.model.Issue;
-import com.example.resitory.IssueRepository;
+import com.example.repository.IssueRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,7 +36,7 @@ public class IssueController {
         String description = data[0];
         int id = Integer.parseInt(data[1]);
         Issue issue = issueRepository.getOne(id);
-        issue.setUpdatedate(new Date());
+        issue.setUpdate_date(new Date());
         issue.setDescription(description);
         issueRepository.save(issue);
         return "redirect:/issues";
@@ -44,7 +44,7 @@ public class IssueController {
 
     @PostMapping("/issue")
     public String createIssue(@ModelAttribute Issue issue){
-        issue.setCreatedate(new Date());
+        issue.setCreate_date(new Date());
         issueRepository.save(issue);
         return "redirect:/issues";
     }
