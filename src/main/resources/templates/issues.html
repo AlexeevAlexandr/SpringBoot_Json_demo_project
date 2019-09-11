@@ -13,6 +13,7 @@
         <table class="w3-table-all">
             <thead>
                 <tr class="w3-red">
+                    <th>Id</th>
                     <th>Url</th>
                     <th>Description</th>
                     <th>Done</th>
@@ -23,6 +24,7 @@
             </thead>
             <th:block th:each="issue : ${issues}">
                 <tr>
+                    <td th:text="${issue.id}">...</td>
                     <td style="word-wrap: break-word">
                         <div class="w3-dropdown-hover">
                             <a th:href="${issue.url}" target="_blank">Link to issue</a>
@@ -40,18 +42,41 @@
                                     <form th:action="@{/issues}" method="post">
                                         <div>
                                             <label>
-                                                <textarea th:text="${issue.description}" name="data" onkeydown="myFunctionShow()" rows="10" style="word-wrap: break-word">...</textarea>
+                                                <textarea th:text="${issue.description}" name="data" onkeydown="myFunctionShow('description_button')" rows="10" style="word-wrap: break-word">...</textarea>
                                                 <textarea th:text="${issue.id}" name="data" style="display: none">...</textarea>
                                             </label>
-                                            <button id="submit" type="submit" class="w3-button w3-green w3-col m6 w3-center" style="display: none">save</button>
-                                            <button id="reset" type="reset" class="w3-button w3-red w3-col m6 w3-center" style="display: none" onclick="myFunctionHide()">reset</button>
+                                            <button name="description_button" id="submit" type="submit" class="w3-button w3-green w3-col m6 w3-center" style="display: none">save</button>
+                                            <button name="description_button" id="reset" type="reset" class="w3-button w3-red w3-col m6 w3-center" style="display: none" onclick="myFunctionHide('description_button')">reset</button>
                                         </div>
                                     </form>
                                 </div>
                             </div>
                         </div>
                     </td>
-                    <td th:text="${issue.done} ? YES : NO">...</td>
+                    <td>
+                        <div class="w3-dropdown-hover">
+                            <a th:text="${issue.done} ? YES : NO"></a>
+                            <div class="w3-dropdown-content w3-bar-block w3-border">
+                                <div class="w3-container">
+                                    <form th:action="@{/issueDone}" method="post">
+                                        <div>
+                                            <label>
+                                                <textarea th:text="${issue.id}" name="data" style="display: none">...</textarea>
+                                            </label>
+                                            <label>
+                                                <input type="radio" name="data" value="YES" th:checked="${issue.done}">
+                                            </label>YES<br>
+                                            <label>
+                                                <input type="radio" name="data" value="NO" th:checked="${!issue.done}">
+                                            </label>NO<br>
+                                            <button id="yes" type="submit" class="w3-button w3-green w3-col m6 w3-center">save</button>
+                                            <button id="no" type="reset" class="w3-button w3-red w3-col m6 w3-center">reset</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
                     <td th:text="${issue.name}">...</td>
                     <td th:text="${issue.create_date}">...</td>
                     <td th:text="${issue.update_date}">...</td>
@@ -60,17 +85,24 @@
         </table>
     </div>
 <script>
-    function myFunctionShow(){
-        var on = document.getElementsByTagName("button");
-        for (var i = 0; i<on.length; i++){
-            on[i].style.display = "block";
+    function f() {
+        var a = document.getElementsByClassName('w3-modal');
+        for (var i = 0; i < a.length; i++) {
+            a[i].style.display = "block";
         }
     }
 
-    function myFunctionHide(){
-        var on = document.getElementsByTagName("button");
-        for (var i = 0; i<on.length; i++){
-            on[i].style.display = "none";
+    function myFunctionShow(name){
+        var buttons = document.getElementsByName(name);
+        for (var i = 0; i<buttons.length; i++){
+            buttons[i].style.display = "block";
+        }
+    }
+
+    function myFunctionHide(name){
+        var buttons = document.getElementsByName(name);
+        for (var i = 0; i<buttons.length; i++){
+            buttons[i].style.display = "none";
         }
     }
 </script>

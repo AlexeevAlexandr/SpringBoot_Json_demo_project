@@ -42,6 +42,16 @@ public class IssueController {
         return "redirect:/issues";
     }
 
+    @PostMapping("/issueDone")
+    public String updateIssueDone(String[] data){
+        int id = Integer.parseInt(data[0]);
+        String done = data[1];
+        Issue issue = issueRepository.getOne(id);
+        issue.setDone(done.equals("YES"));
+        issueRepository.save(issue);
+        return "redirect:/issues";
+    }
+
     @PostMapping("/issue")
     public String createIssue(@ModelAttribute Issue issue){
         issue.setCreate_date(new Date());
